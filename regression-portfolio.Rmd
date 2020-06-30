@@ -13,6 +13,9 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r}
+library(ggplot2)
+```
 ## 1. Multiple Linear Regression
 
 ```{r}
