@@ -26,8 +26,53 @@ plot(hotelData[,-1], pch=1)
 round(cor(hotelData[,-1]), 2)
 ```
 
+##### Addressing Multicollinearity
+###### 1. Multicollinearity is defined as a condition where two or more predictors are highly correlated with one another. Consequences of multicollinearity can be the instability of coefficent estimates and an inaccurate estimate of the variance
+###### 2. As you can see from the scatterplox matrix and the correlation table, there seems to be high correlation between Energy_cons and area as well as numrooms and area
+###### 3. The good news is that multicollinearity does not prevent you from obtaining precise predictions, and since this is the aim of our model we can continue without much worry
+
+```{r}
+
+```
+
 ```{r}
 ## Developing a tentative model
 model <- lm(Energy_cons ~ area + age + numrooms + OccRate, data=hotelData)
 summary(model)
 ```
+
+
+
+```{r}
+## Looking for 
+plot(model)
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
