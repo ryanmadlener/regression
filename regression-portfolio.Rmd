@@ -9,7 +9,6 @@ output: html_document
 ---
 ##### This document holds different regression models I have learned throughout my various statistical courses!
 
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -18,13 +17,41 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r}
 ## Getting the data
-houseData <- read.csv(file.choose())
+hotelData <- read.csv(file.choose())
 
-
-## Exploring the data
-head(houseData)
+## Exploratory data analysis
+plot(hotelData[,-1], pch=1)
+```
+```{r}
+round(cor(hotelData[,-1]), 2)
 ```
 
+```{r}
+## Developing a tentative model
+model <- lm(Energy_cons ~ area + age + numrooms + OccRate, data=hotelData)
+summary(model)
+```
 
+```{r}
+## Addressing multicollinearity
+```
 
+```{r}
+## Fitting the model and 
+```
 
+```{r}
+## Overall F Test
+```
+
+```{r}
+## Partial F Test
+```
+
+```{r}
+## Cross validation
+```
+
+```{r}
+## Predictions
+```
