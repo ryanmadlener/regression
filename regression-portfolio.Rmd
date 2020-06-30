@@ -13,9 +13,6 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
-library(ggplot2)
-```
 ## 1. Multiple Linear Regression
 
 ```{r}
@@ -33,28 +30,4 @@ round(cor(hotelData[,-1]), 2)
 ## Developing a tentative model
 model <- lm(Energy_cons ~ area + age + numrooms + OccRate, data=hotelData)
 summary(model)
-```
-
-```{r}
-## Addressing multicollinearity
-```
-
-```{r}
-## Fitting the model and 
-```
-
-```{r}
-## Overall F Test
-```
-
-```{r}
-## Partial F Test
-```
-
-```{r}
-## Cross validation
-```
-
-```{r}
-## Predictions
 ```
