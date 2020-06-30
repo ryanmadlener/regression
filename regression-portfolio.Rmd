@@ -16,6 +16,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## 1. Multiple Linear Regression
 
+```{r}
+## Getting the data
+houseData <- read.csv(file.choose())
+
+
+## Exploring the data
+head(houseData)
+```
+
 
 
 
