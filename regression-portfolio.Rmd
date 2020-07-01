@@ -18,12 +18,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r}
 ## Getting the data
 hotelData <- read.csv(file.choose())
-
+  
 ## Exploratory data analysis
-plot(hotelData[,-1], pch=1)
+plot(hotelData[2:6])
 ```
 ```{r}
-round(cor(hotelData[,-1]), 2)
+round(cor(hotelData[2:6]), 2)
 ```
 
 ##### Addressing Multicollinearity
@@ -44,30 +44,14 @@ summary(model)
 
 
 ```{r}
-## Looking for 
-plot(model)
+## Residual Plot
+plot(model, which=1)
 
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+```{r}
+## QQ Plot
+plot(model, which=2)
+```
 
 
 
