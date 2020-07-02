@@ -69,7 +69,10 @@ plot(model, which=2)
 > H~a~ : $\hat{y}$ = $\beta$~0~ + $\beta$~1~x~1~ + $\beta$~2~x~2~ + $\beta$~3~x~3~ + $\beta$~4~x~4~
 
 > n = 19, p = 4, q = 2 \
-> F = $\frac{n-p-1}{q}$ $\frac{R~1~ - R~2~}{1 - R~1~}$
+> F = $(\frac{n-p-1}{q})$ $(\frac{R^2_{1} - R^2_{2}}{1 - R^2_{1}})$
+
+
+
 
 
 
