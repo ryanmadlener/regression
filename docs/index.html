@@ -430,9 +430,6 @@ plot(model, which=2)</code></pre>
 </div>
 <div id="overall-f-test" class="section level4">
 <h4>Overall F Test</h4>
-<ol style="list-style-type: decimal">
-<li>The Overall F Test allows us to check to see if any of the predictors are useful for finding our predicted value, which in this case is</li>
-</ol>
 <blockquote>
 <p><span class="math inline">\(\alpha\)</span> = 0.01<br />
 </p>
@@ -442,9 +439,23 @@ plot(model, which=2)</code></pre>
 H<sub>a</sub> : at least one <span class="math inline">\(\beta\)</span><sub>j</sub> <span class="math inline">\(\neq\)</span> 0</p>
 </blockquote>
 <blockquote>
-<p>Since p &lt; <span class="math inline">\(\alpha\)</span> in this case from the summary above, there is significant evidence to conclude that at least one of the predictors is useful for predicting the response variable, which in this case is energy consumption</p>
+<p>Since p (1.828e-05) &lt; <span class="math inline">\(\alpha\)</span>, we would reject the null hypothesis, meaning that there is significant evidence to conclude that at least one of the predictors is useful for predicting the response variable, which in this case is energy consumption</p>
 </blockquote>
-<pre class="r"><code>## Overall F test</code></pre>
+</div>
+<div id="partial-f-test" class="section level4">
+<h4>Partial F Test</h4>
+<blockquote>
+<p><span class="math inline">\(\alpha\)</span> = 0.01<br />
+</p>
+</blockquote>
+<blockquote>
+<p>H<sub>0</sub> : <span class="math inline">\(\hat{y}\)</span> = <span class="math inline">\(\beta\)</span><sub>0</sub> + <span class="math inline">\(\beta\)</span><sub>1</sub>x<sub>1</sub> + <span class="math inline">\(\beta\)</span><sub>4</sub>x<sub>4</sub><br />
+H<sub>a</sub> : <span class="math inline">\(\hat{y}\)</span> = <span class="math inline">\(\beta\)</span><sub>0</sub> + <span class="math inline">\(\beta\)</span><sub>1</sub>x<sub>1</sub> + <span class="math inline">\(\beta\)</span><sub>2</sub>x<sub>2</sub> + <span class="math inline">\(\beta\)</span><sub>3</sub>x<sub>3</sub> + <span class="math inline">\(\beta\)</span><sub>4</sub>x<sub>4</sub></p>
+</blockquote>
+<blockquote>
+<p>n = 19, p = 4, q = 2<br />
+F = <span class="math inline">\(\frac{n-p-1}{q}\)</span> <span class="math inline">\(\frac{R~1~ - R~2~}{1 - R~1~}\)</span></p>
+</blockquote>
 </div>
 <div id="predictions" class="section level4">
 <h4>Predictions</h4>

@@ -37,10 +37,6 @@ round(cor(hotelData[2:6]), 2)
 3. The good news is that multicollinearity does not prevent you from obtaining precise predictions, and since this is the aim of our model we can continue without much worry
 
 ```{r}
-
-```
-
-```{r}
 ## Developing a tentative model
 model <- lm(Energy_cons ~ area + age + numrooms + OccRate, data=hotelData)
 summary(model)
@@ -57,22 +53,26 @@ plot(model, which=2)
 ```
 
 #### Overall F Test
-1. The Overall F Test allows us to check to see if any of the predictors are useful for finding our predicted value, which in this case is 
 
 > $\alpha$ = 0.01 \
 
 > H~0~ : $\beta$~1~ = $\beta$~2~ = $\beta$~3~ = $\beta$~4~ = $\beta$~5~ = 0\
 > H~a~ : at least one $\beta$~j~ $\neq$ 0
 
+> Since p (1.828e-05) < $\alpha$, we would reject the null hypothesis, meaning that there is significant evidence to conclude that at least one of the predictors is useful for predicting the response variable, which in this case is energy consumption
 
-> Since p < $\alpha$ in this case from the summary above, there is significant evidence to conclude that at least one of the 
-> predictors is useful for predicting the response variable, which in this case is energy consumption
+#### Partial F Test
+
+> $\alpha$ = 0.01 \
+
+> H~0~ : $\hat{y}$ = $\beta$~0~ + $\beta$~1~x~1~ + $\beta$~4~x~4~ \
+> H~a~ : $\hat{y}$ = $\beta$~0~ + $\beta$~1~x~1~ + $\beta$~2~x~2~ + $\beta$~3~x~3~ + $\beta$~4~x~4~
+
+> n = 19, p = 4, q = 2 \
+> F = $\frac{n-p-1}{q}$ $\frac{R~1~ - R~2~}{1 - R~1~}$
 
 
-```{r}
-## Overall F test
 
-```
 #### Predictions
 1. When doing predictions it is important that most of the time we not predict an X value that is outside of the range of X values that we have, this is called extrapolation. 
     * This can quickly become a problem because we do not know how the data will act outside of the X values we have, and making a prediction on these unknown values could result in errors. 
