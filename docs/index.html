@@ -456,6 +456,37 @@ H<sub>a</sub> : <span class="math inline">\(\hat{y}\)</span> = <span class="math
 <p>n = 19, p = 4, q = 2<br />
 F = <span class="math inline">\((\frac{n-p-1}{q})\)</span> <span class="math inline">\((\frac{R^2_{1} - R^2_{2}}{1 - R^2_{1}})\)</span></p>
 </blockquote>
+<pre class="r"><code>## Creating the reduced model for the partial F test
+
+reducedModel &lt;- lm(Energy_cons ~ area + OccRate, data=hotelData)
+summary(reducedModel)</code></pre>
+<pre><code>## 
+## Call:
+## lm(formula = Energy_cons ~ area + OccRate, data = hotelData)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -31.199 -13.024   1.663  11.195  30.977 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept) -5.519e+01  2.554e+01  -2.161   0.0462 *  
+## area         1.679e-03  1.953e-04   8.598 2.15e-07 ***
+## OccRate      7.419e+01  3.507e+01   2.115   0.0504 .  
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 19.15 on 16 degrees of freedom
+## Multiple R-squared:  0.8223, Adjusted R-squared:  0.8001 
+## F-statistic: 37.02 on 2 and 16 DF,  p-value: 9.945e-07</code></pre>
+<blockquote>
+<p>F = <span class="math inline">\((\frac{19-4-1}{2})\)</span> <span class="math inline">\((\frac{0.8402 - 0.8223}{1 - 0.8402})\)</span> = 0.7841</p>
+</blockquote>
+<pre class="r"><code>1 - pf(0.7841, 2, 14)</code></pre>
+<pre><code>## [1] 0.4755842</code></pre>
+<blockquote>
+<p>Since p &gt; <span class="math inline">\(\alpha\)</span>, we fail to reject the null hypothesis, meaning that there is not sufficient evidence to say that the full model is better than the reduced model so we can use the reduced model for our predictions</p>
+</blockquote>
 </div>
 <div id="predictions" class="section level4">
 <h4>Predictions</h4>

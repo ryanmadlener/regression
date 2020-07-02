@@ -71,9 +71,18 @@ plot(model, which=2)
 > n = 19, p = 4, q = 2 \
 > F = $(\frac{n-p-1}{q})$ $(\frac{R^2_{1} - R^2_{2}}{1 - R^2_{1}})$
 
+```{r}
+## Creating the reduced model for the partial F test
 
+reducedModel <- lm(Energy_cons ~ area + OccRate, data=hotelData)
+summary(reducedModel)
+```
+> F = $(\frac{19-4-1}{2})$ $(\frac{0.8402 - 0.8223}{1 - 0.8402})$ = 0.7841
 
-
+```{r}
+1 - pf(0.7841, 2, 14)
+```
+> Since p > $\alpha$, we fail to reject the null hypothesis, meaning that there is not sufficient evidence to say that the full model is better than the reduced model so we can use the reduced model for our predictions
 
 
 #### Predictions
