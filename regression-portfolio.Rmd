@@ -12,6 +12,20 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{css}
+.columns {display:flex;}
+h2 {color: #05668d;}
+font-size: 15px;
+```
+
+```{css, echo=FALSE}
+.test {
+  border-style: hidden;
+  font-weight: bold;
+  background-color: white;
+}
+```
+
 ## 1. Multiple Linear Regression
 
 ```{r}
@@ -21,9 +35,9 @@ hotelData <- read.csv(file.choose())
 head(hotelData)
 ```
 
-```{r}
+```{r class.source="test"}
 ## Scatter plot matrix
-plot(hotelData[2:6])
+plot(hotelData[2:6], pch=16, col="#05668d")
 ```
 
 ```{r}
@@ -80,9 +94,13 @@ summary(reducedModel)
 > F = $(\frac{19-4-1}{2})$ $(\frac{0.8402 - 0.8223}{1 - 0.8402})$ = 0.7841
 
 ```{r}
+## Getting the p value
 1 - pf(0.7841, 2, 14)
 ```
 > Since p > $\alpha$, we fail to reject the null hypothesis, meaning that there is not sufficient evidence to say that the full model is better than the reduced model so we can use the reduced model for our predictions
+
+#### The Final Model
+> $\hat{y}$ = -55.19 + 0.001679x~1~ + 74.19x~4~
 
 
 #### Predictions
