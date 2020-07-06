@@ -12,8 +12,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{css, echo=FALSE}
-
-
 .columns {
   display: flex;
 }
@@ -29,26 +27,86 @@ h2 {
   font-family: "Courier New";
   font-style: italic;
 }
-
-.test {
-  
-}
-
-
 ```
 
 # Regression Portfolio
 
+```{r, messages=FALSE}
+## Libraries used throughout
+library(ggplot2)
+library(ggcorrplot)
+```
+
 ## 1. Multiple Linear Regression
+
+Dataset is from the *House Sales in King County, USA* Kaggle Dataset and can be found [here](https://www.kaggle.com/harlfoxem/housesalesprediction)
+
+```{r}
+## Getting the data
+carData <- read.csv(file.choose())
+
+str(carData)
+```
+
+```{r}
+## Correlation plot
+corr <- round(cor(carData[2:20]), 2)
+ggcorrplot(
+  corr,
+  type="lower",
+  lab=TRUE,
+  lab_size=2,
+  outline.col="white",
+  show.legend=FALSE,
+  ggtheme = ggplot2::theme_gray
+)
+```
+#### Addressing Multicollinearity /
+1. Multicollinearity is defined as a condition where two or more predictors are highly correlated with one another. Consequences of multicollinearity can be the instability of coefficient estimates and an inaccurate estimate of the variance
+2. As you can see from the correlation plot, there seems to be high correlation between 
+3. The good news is that multicollinearity does not prevent you from obtaining precise predictions, and since this is the aim of our model we can continue without much worry
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ```{r}
 ## Getting the data
 hotelData <- read.csv(file.choose())
 
-head(hotelData)
+str(hotelData)
 ```
 
-```{r class.source="test"}
+```{r}
 ## Scatter plot matrix
 plot(hotelData[2:6], pch=16, col="#05668d")
 ```
@@ -58,10 +116,6 @@ plot(hotelData[2:6], pch=16, col="#05668d")
 round(cor(hotelData[2:6]), 2)
 ```
 
-#### Addressing Multicollinearity
-1. Multicollinearity is defined as a condition where two or more predictors are highly correlated with one another. Consequences of multicollinearity can be the instability of coefficient estimates and an inaccurate estimate of the variance
-2. As you can see from the scatterplot matrix and the correlation table, there seems to be high correlation between Energy_cons and area as well as numrooms and area
-3. The good news is that multicollinearity does not prevent you from obtaining precise predictions, and since this is the aim of our model we can continue without much worry
 
 ```{r}
 ## Developing a tentative model
@@ -110,12 +164,25 @@ Since p > $\alpha$, we fail to reject the null hypothesis, meaning that there is
 #### The Final Model
 > $\hat{y}$ = -55.19 + 0.001679x~1~ + 74.19x~4~
 
-
+```{r}
+## Creating the final model
+finalModel <- reducedModel
+summary(finalModel)
+```
 #### Predictions
 1. When doing predictions it is important that most of the time we not predict an X value that is outside of the range of X values that we have, this is called extrapolation. 
     * This can quickly become a problem because we do not know how the data will act outside of the X values we have, and making a prediction on these unknown values could result in errors. 
  
+```{r}
+## Creating the new hotel
+newHotel <- data.frame(area=55000, age=4, numrooms=319, OccRate=0.80)
+newHotel
+```
 
+```{r}
+## Predicting the energy of the new hotel
+predict(finalModel, interval="predict", newdata=newHotel)
+```
 
 
 
