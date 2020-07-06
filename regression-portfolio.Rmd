@@ -31,7 +31,7 @@ h2 {
 
 # Regression Portfolio
 
-```{r, messages=FALSE}
+```{r messages=FALSE}
 ## Libraries used throughout
 library(ggplot2)
 library(ggcorrplot)
@@ -45,17 +45,17 @@ Dataset is from the *House Sales in King County, USA* Kaggle Dataset and can be 
 ## Getting the data
 houseData <- read.csv(file.choose())
 
-str(houseData)
+head(houseData)
 ```
 
 ```{r}
 ## Correlation plot
-corr <- round(cor(houseData[2:18]), 2)
+corr <- round(cor(houseData[2:17]), 2)
 ggcorrplot(
   corr,
   type="lower",
   lab=TRUE,
-  lab_size=2,
+  lab_size=2.5,
   outline.col="white",
   show.legend=FALSE,
   ggtheme = ggplot2::theme_gray
@@ -71,109 +71,51 @@ ggcorrplot(
 
 ```{r}
 ## Developing a tentative model
-initialModel <- lm(price ~  , data=houseData)
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```{r}
-## Getting the data
-hotelData <- read.csv(file.choose())
-
-str(hotelData)
+initialModel <- lm(price ~  bedrooms + bathrooms + sqft_living + sqft_lot + 
+                     floors + waterfront + view + condition + grade +
+                     sqft_above + yr_built + yr_renovated + zipcode + 
+                     sqft_living15, data=houseData)
+summary(initialModel)
 ```
 
 ```{r}
-## Scatter plot matrix
-plot(hotelData[2:6], pch=16, col="#05668d")
+## Creating a reduced model
+
+reducedModel <- lm(price ~  bedrooms + bathrooms + sqft_living + sqft_lot + 
+                     floors + waterfront + view + condition + grade + 
+                     yr_built + sqft_living15, data=houseData)
+summary(reducedModel)
 ```
-
 ```{r}
-## Correlation table
-round(cor(hotelData[2:6]), 2)
-```
-
-
-```{r}
-## Developing a tentative model
-model <- lm(Energy_cons ~ area + age + numrooms + OccRate, data=hotelData)
-summary(model)
+## Partial F test
+anova(initialModel, reducedModel)
 ```
 
 ```{r}
 ## Residual Plot
-plot(model, which=1)
+plot(reducedModel, which=1)
 
 ```
+
 ```{r}
 ## QQ Plot
-plot(model, which=2)
+plot(reducedModel, which=2)
 ```
 
-#### Overall F Test ($\alpha$ = 0.01)
 
-> H~0~ : $\beta$~1~ = $\beta$~2~ = $\beta$~3~ = $\beta$~4~ = $\beta$~5~ = 0\
-> H~a~ : at least one $\beta$~j~ $\neq$ 0
-
-Since p (1.828e-05) < $\alpha$, we would reject the null hypothesis, meaning that there is significant evidence to conclude that at least one of the predictors is useful for predicting the response variable, which in this case is energy consumption
-
-#### Partial F Test ($\alpha$ = 0.01)
-
-> H~0~ : $\hat{y}$ = $\beta$~0~ + $\beta$~1~x~1~ + $\beta$~4~x~4~ \
-> H~a~ : $\hat{y}$ = $\beta$~0~ + $\beta$~1~x~1~ + $\beta$~2~x~2~ + $\beta$~3~x~3~ + $\beta$~4~x~4~
-
-> n = 19, p = 4, q = 2 \
-> F = $(\frac{n-p-1}{q})$ $(\frac{R^2_{1} - R^2_{2}}{1 - R^2_{1}})$
-
-```{r}
-## Creating the reduced model for the partial F test
-reducedModel <- lm(Energy_cons ~ area + OccRate, data=hotelData)
-summary(reducedModel)
-```
-> F = $(\frac{19-4-1}{2})$ $(\frac{0.8402 - 0.8223}{1 - 0.8402})$ = 0.7841
-
-```{r}
-## Getting the p value
-1 - pf(0.7841, 2, 14)
-```
-Since p > $\alpha$, we fail to reject the null hypothesis, meaning that there is not sufficient evidence to say that the full model is better than the reduced model so we can use the reduced model for our predictions
-
-#### The Final Model
-> $\hat{y}$ = -55.19 + 0.001679x~1~ + 74.19x~4~
-
-```{r}
-## Creating the final model
-finalModel <- reducedModel
-summary(finalModel)
-```
 #### Predictions
 1. When doing predictions it is important that most of the time we not predict an X value that is outside of the range of X values that we have, this is called extrapolation. 
     * This can quickly become a problem because we do not know how the data will act outside of the X values we have, and making a prediction on these unknown values could result in errors. 
  
 ```{r}
 ## Creating the new hotel
-newHotel <- data.frame(area=55000, age=4, numrooms=319, OccRate=0.80)
-newHotel
+## newHotel <- data.frame(area=55000, age=4, numrooms=319, OccRate=0.80)
+## newHotel
 ```
 
 ```{r}
 ## Predicting the energy of the new hotel
-predict(finalModel, interval="predict", newdata=newHotel)
+## predict(finalModel, interval="predict", newdata=newHotel)
 ```
 
 
