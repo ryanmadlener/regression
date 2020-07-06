@@ -61,24 +61,24 @@ ggcorrplot(
   ggtheme = ggplot2::theme_gray
 )
 ```
-#### Addressing Multicollinearity /
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### Addressing Multicollinearity
 1. Multicollinearity is defined as a condition where two or more predictors are highly correlated with one another. Consequences of multicollinearity can be the instability of coefficient estimates and an inaccurate estimate of the variance
 2. As you can see from the correlation plot, there seems to be high correlation between 
 3. The good news is that multicollinearity does not prevent you from obtaining precise predictions, and since this is the aim of our model we can continue without much worry
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
