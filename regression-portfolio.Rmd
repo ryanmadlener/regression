@@ -43,14 +43,14 @@ Dataset is from the *House Sales in King County, USA* Kaggle Dataset and can be 
 
 ```{r}
 ## Getting the data
-carData <- read.csv(file.choose())
+houseData <- read.csv(file.choose())
 
-str(carData)
+str(houseData)
 ```
 
 ```{r}
 ## Correlation plot
-corr <- round(cor(carData[2:20]), 2)
+corr <- round(cor(houseData[2:18]), 2)
 ggcorrplot(
   corr,
   type="lower",
@@ -63,25 +63,17 @@ ggcorrplot(
 ```
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 #### Addressing Multicollinearity
 1. Multicollinearity is defined as a condition where two or more predictors are highly correlated with one another. Consequences of multicollinearity can be the instability of coefficient estimates and an inaccurate estimate of the variance
-2. As you can see from the correlation plot, there seems to be high correlation between 
+2. As you can see from the correlation plot, there seems to be high correlation between sqft_living and bathrooms, sqft_above and sqft_living
 3. The good news is that multicollinearity does not prevent you from obtaining precise predictions, and since this is the aim of our model we can continue without much worry
 
 
+```{r}
+## Developing a tentative model
+initialModel <- lm(price ~  , data=houseData)
 
+```
 
 
 
