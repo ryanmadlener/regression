@@ -45,7 +45,7 @@ Dataset is from the *House Sales in King County, USA* Kaggle Dataset and can be 
 ## Getting the data
 houseData <- read.csv(file.choose())
 
-head(houseData)
+plot(houseData[2:17])
 ```
 
 ```{r}
@@ -108,17 +108,18 @@ plot(reducedModel, which=2)
     * This can quickly become a problem because we do not know how the data will act outside of the X values we have, and making a prediction on these unknown values could result in errors. 
  
 ```{r}
-## Creating the new hotel
-## newHotel <- data.frame(area=55000, age=4, numrooms=319, OccRate=0.80)
-## newHotel
+## Creating the new house
+newHouse <- data.frame(bedrooms= , bathrooms= , sqft_living= , sqft_lot= , floors= ,  
+                       waterfront= , view= , condition= ,  grade= ,  yr_built= ,  sqft_living15= )
 ```
 
 ```{r}
-## Predicting the energy of the new hotel
-## predict(finalModel, interval="predict", newdata=newHotel)
+## Predicting the price of the new house
+predict(reducedModel, interval="predict", newdata=newHouse)
 ```
 
 
 
+## Logistic Regression
 
 

@@ -4,6 +4,7 @@
 
 # Session Data files
 .RData
+.csv
 
 # User-specific files
 .Ruserdata
@@ -37,5 +38,3 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
-
-.csv
